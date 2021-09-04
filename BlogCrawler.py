@@ -4,6 +4,7 @@
 from naver import NaverBlogCrawler, NaverPostCrawler
 from enum import Enum
 import time
+import random
 
 
 class SupportPlatform(Enum):
@@ -26,16 +27,28 @@ def read(platform, blog_id, category_id):
     df = read_list_in_category(platform, blog_id, category_id)
     df.insert(3, 'contents', '')
 
+    total_count = len(df)
     for idx, row in df.iterrows():
         post_id = row['post_id']
+        count = df.index.get_loc(idx) + 1
+        # count = int(idx)+1
+        print(f"read_post ({platform}, {blog_id}, {post_id})  {count}/{total_count}")
         row['contents'] = read_post(platform, blog_id, post_id)
 
         # 혹시 모르니까 sleep 추가
-        time.sleep(0.5)
+        time.sleep(get_sleep_time_random())
     return df
 
 
-def to_text(df, file_name):
+def get_sleep_time_random():
+    rv = random.random() * 10 + 2
+    return rv
+
+
+def to_text(df, file_name, reverse=False):
+    if reverse:
+        df = df[::-1]
+
     # 파일에 쓰기
     with open(file_name, 'wt', encoding='utf-8') as f:
         for idx, row in df.iterrows():
@@ -57,6 +70,7 @@ def read_list_in_category(blog_platform, blog_id, category_id):
 
 
 def read_post(blog_platform, blog_id, post_id):
+    # print(f"read_post ({blog_platform}, {blog_id}, {post_id})")
     platform = convert_platform_id(blog_platform)
     if platform == SupportPlatform.Naver:
         return NaverPostCrawler.read_post(blog_id, post_id)

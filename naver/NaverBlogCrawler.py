@@ -63,12 +63,17 @@ def read_list_in_category_per_page(blog_id: str, category_no, current_page=1, co
     print(f"read_list_in_category_per_page [{blog_id}, {category_no}, {current_page}, {count_per_page}]")
     # 데이터 조회
     url = f"https://blog.naver.com/PostTitleListAsync.naver"
+
+    # noinspection PyDictCreation
     params = {
         'blogId': blog_id,
         'currentPage': current_page,
         'categoryNo': category_no,
         'countPerPage': count_per_page
     }
+
+    # 어쩔 때는 paraentCategoryNo 가 있고.. 어쩔 때는 없고..
+    # params['parentCategoryNo'] = category_no
     # 호출을 위장하기 위함.. 혹시 모르니까.
     headers = {
         'referer': f'https://blog.naver.com/PostList.naver?blogId={blog_id}',
