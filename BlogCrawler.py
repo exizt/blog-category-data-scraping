@@ -12,49 +12,56 @@ class SupportPlatform(Enum):
     def __str__(self):
         return self.name
 
-    @classmethod
-    def has_value(cls, value):
-        return value in cls._value2member_map_
+
+def read(platform, blog_id, category_id):
+    platform = convert_platform_id(platform)
+    if not platform:
+        # 지원되지 않는 플랫폼인 경우
+        raise
+
+    df = read_list_in_category(platform, blog_id, category_id)
+    df.insert(3, 'contents', '')
+
+    for idx, row in df.iterrows():
+        # 데이터프레임을 만들자...
+        post_id = row['post_id']
+        row['contents'] = read_post(platform, blog_id, post_id)
+    return df
 
 
 def read_list_in_category(blog_platform, blog_id, category_id):
-    platform = convert_platform_str(blog_platform)
+    platform = convert_platform_id(blog_platform)
     if platform == SupportPlatform.Naver:
-        return NaverPostCrawler.read_post(blog_id, category_id)
+        return NaverBlogCrawler.read_list_in_category(blog_id, category_id)
     else:
-        print('준비되지 않았습니다...')
         return False
 
 
 def read_post(blog_platform, blog_id, post_id):
-    platform = convert_platform_str(blog_platform)
+    platform = convert_platform_id(blog_platform)
     if platform == SupportPlatform.Naver:
         return NaverPostCrawler.read_post(blog_id, post_id)
     else:
-        print('준비되지 않았습니다...')
         return False
 
 
-def convert_platform_str(platform):
+def convert_platform_id(platform):
     """
     지원되는 플랫폼에 대한 형식(Enum)으로 전환 및 체크
     :param platform: str|int
     :return: SupportPlatform value
     """
-    if type(platform) == str:
+    if isinstance(platform, SupportPlatform):
+        return platform
+
+    if isinstance(platform, str):
         p = platform.lower()
         if p == 'naver':
             return SupportPlatform.Naver
         elif p == 'tistory':
             return SupportPlatform.Tistory
         else:
-            print('준비되지 않았습니다...')
-            raise
-    elif type(platform) == int:
-        if SupportPlatform.has_value(platform):
-            return platform
-        else:
-            print('준비되지 않았습니다...')
+            print('지원되지 않는 블로그 플랫폼입니다.')
             raise
     else:
         raise

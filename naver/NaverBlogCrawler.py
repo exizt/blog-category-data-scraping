@@ -91,10 +91,12 @@ def read_list_in_category_per_page(blog_id: str, category_no, current_page=1, co
         # print(date_parse(row['addDate']))
         row['addDate'] = date_parse(row["addDate"])
 
+    df.insert(0, 'blog_id', blog_id)
     df.rename(
         columns={
-            'logNo': 'log_no',
+            'logNo': 'post_id',
             'addDate': 'created_at',
+            'title': 'title'
         },
         inplace=True
     )
