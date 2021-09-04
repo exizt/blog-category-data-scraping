@@ -8,12 +8,17 @@ from dateutil.parser import parse as date_parse
 import pandas as pd
 from pandas import DataFrame
 import time
+from urllib.parse import unquote, unquote_plus
 
 
 total_count = 0
 
 
 class LazyDecoder(json.JSONDecoder):
+    """
+    https://stackoverflow.com/questions/65910282/jsondecodeerror-invalid-escape-when-parsing-from-python
+    JSONDecodeError; Invalid /escape 에 대한 조치
+    """
     def decode(self, s, **kwargs):
         regex_replacements = [
             (re.compile(r'([^\\])\\([^\\])'), r'\1\\\\\2'),
@@ -75,7 +80,6 @@ def read_list_in_category_per_page(blog_id: str, category_no, current_page=1, co
     # parse json
     data = json.loads(response.text, cls=LazyDecoder)
 
-    # print(data)
     if current_page == 1:
         global total_count
         total_count = int(data['totalCount'])
@@ -88,7 +92,7 @@ def read_list_in_category_per_page(blog_id: str, category_no, current_page=1, co
 
     # 바꿀 값들 변경
     for idx, row in df.iterrows():
-        # print(date_parse(row['addDate']))
+        row['title'] = unquote_plus(row['title'])
         row['addDate'] = date_parse(row["addDate"])
 
     df.insert(0, 'blog_id', blog_id)
