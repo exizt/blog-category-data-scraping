@@ -21,8 +21,8 @@ env.bak/
 venv.bak/
 
 # db
-.db
-.sqlite
+*.db
+*.sqlite
 
 # Add
 mytest.py
