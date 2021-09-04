@@ -19,3 +19,10 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+# db
+.db
+.sqlite
+
+# Add
+mytest.py

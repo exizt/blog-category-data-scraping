@@ -19,7 +19,6 @@ class LazyDecoder(json.JSONDecoder):
 
 
 def get_list_in_category(blog_id, category_no):
-    blog_id = "dbsrl5987"
 
     # 데이터 조회
     url = f"https://blog.naver.com/PostTitleListAsync.naver?blogId={blog_id}&viewdate=&currentPage=3&categoryNo={category_no}&parentCategoryNo=&countPerPage=5"
@@ -45,15 +44,3 @@ def get_list_in_category(blog_id, category_no):
     df.to_sql(f"naver_{blog_id}_{category_no}", con=conn, if_exists='replace')
 
     print(df['logNo'])
-
-
-if __name__ == '__main__':
-    total_count = 16
-    per_page = 5
-
-    if total_count % per_page > 0:
-        res = (total_count // per_page) + 1
-    else:
-        res = total_count // per_page
-    print(res)
-    # get_list_in_category('dbsrl5987', '36')
