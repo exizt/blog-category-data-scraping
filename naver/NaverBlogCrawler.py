@@ -8,7 +8,6 @@ from dateutil.parser import parse as date_parse
 import pandas as pd
 from pandas import DataFrame
 import time
-import numpy as np
 
 
 total_count = 0
@@ -65,8 +64,13 @@ def read_list_in_category_per_page(blog_id: str, category_no, current_page=1, co
         'categoryNo': category_no,
         'countPerPage': count_per_page
     }
+    # 호출을 위장하기 위함.. 혹시 모르니까.
+    headers = {
+        'referer': f'https://blog.naver.com/PostList.naver?blogId={blog_id}',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'
+    }
     # request http
-    response = requests.get(url, params=params)
+    response = requests.get(url, params=params, headers=headers)
 
     # parse json
     data = json.loads(response.text, cls=LazyDecoder)
@@ -95,7 +99,3 @@ def read_list_in_category_per_page(blog_id: str, category_no, current_page=1, co
         inplace=True
     )
     return df
-
-
-def read_post():
-    driver = webdriver.Chrome
