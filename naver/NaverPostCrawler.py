@@ -1,12 +1,7 @@
+"""
+네이버 포스트 본문 내용을 스크래핑
+"""
 import requests
-import json
-import re
-from dateutil.parser import parse as date_parse
-import pandas as pd
-from pandas import DataFrame
-import time
-import numpy as np
-import urllib.request
 from bs4 import BeautifulSoup
 
 

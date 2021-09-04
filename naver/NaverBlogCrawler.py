@@ -1,5 +1,5 @@
 """
-게시물 목록을 크롤링
+네이버의 게시물 목록을 크롤링
 """
 import requests
 import json
@@ -8,7 +8,7 @@ from dateutil.parser import parse as date_parse
 import pandas as pd
 from pandas import DataFrame
 import time
-from urllib.parse import unquote, unquote_plus
+from urllib.parse import unquote_plus
 
 
 total_count = 0
@@ -36,7 +36,7 @@ def read_list_in_category(blog_id: str, category_no) -> DataFrame:
     :param category_no: 카테고리번호
     :return: DataFrame
     """
-    per_page = 5
+    per_page = 30
     df = read_list_in_category_per_page(blog_id, category_no, 1, per_page)
 
     page_total_count = count_page(per_page)

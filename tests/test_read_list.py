@@ -1,4 +1,3 @@
-import pytest
 from naver import NaverBlogCrawler
 
 
@@ -15,6 +14,3 @@ def test_read_list():
     # else:
     #     print('failed')
     assert len(df) > 0
-
-
-# if __name__ == '__main__':

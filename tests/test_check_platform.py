@@ -1,7 +1,4 @@
-import pytest
-
 import BlogCrawler
-from naver import NaverBlogCrawler
 
 
 def test_platform():
@@ -16,6 +13,3 @@ def test_platform():
     print(type(t2))
 
     assert t1 and t2
-
-
-# if __name__ == '__main__':

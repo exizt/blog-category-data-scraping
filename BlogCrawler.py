@@ -1,5 +1,9 @@
+"""
+블로그 데이터 스크래핑.
+"""
 from naver import NaverBlogCrawler, NaverPostCrawler
 from enum import Enum
+import time
 
 
 class SupportPlatform(Enum):
@@ -23,9 +27,11 @@ def read(platform, blog_id, category_id):
     df.insert(3, 'contents', '')
 
     for idx, row in df.iterrows():
-        # 데이터프레임을 만들자...
         post_id = row['post_id']
         row['contents'] = read_post(platform, blog_id, post_id)
+
+        # 혹시 모르니까 sleep 추가
+        time.sleep(0.5)
     return df
 
 
