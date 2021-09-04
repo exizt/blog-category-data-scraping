@@ -31,7 +31,9 @@ def read_post(blog_id, post_no):
 
     if soup.find("div", attrs={"class": "se-main-container"}):
         text = soup.find("div", attrs={"class": "se-main-container"}).get_text()
-        text = text.replace("\n", "")  # 공백 제거
+        
+        # text = text.replace("\n", "")  # 공백 제거
+        text = text.replace("\u200b", "\n")  # 제로 스페이스 제거
         return text
     else:
         return ''
