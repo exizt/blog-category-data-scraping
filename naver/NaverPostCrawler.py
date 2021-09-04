@@ -34,4 +34,4 @@ def read_post(blog_id, post_no):
         text = text.replace("\n", "")  # 공백 제거
         return text
     else:
-        return False
+        return ''
