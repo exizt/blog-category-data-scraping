@@ -20,3 +20,13 @@
 현재는 sqlite 로 저장하게 했는데...
 단순히 DataFrame 으로 return만 하게 기능적으로 구성해도 될 것 같은데..
 
+
+# 설치된 패키지
+- requests : certifi, carset-normalizer, idna, urllib3
+  - 웹 통신
+- beautifulsoup4 : soupsieve
+  - 응답된 html의 핸들링
+- pandas : numpy, python-dateutil, pytz, six
+  - dataframe으로 손쉽게 데이터 핸들링
+- pytest : atomicwrites, attrs, colorama, iniconfig, packaging, pluggy, py, toml
+  - 디버깅 하려고.
