@@ -28,12 +28,21 @@ def read_post(blog_id, post_no):
     # html 파싱 하고 어쩌고
     soup = BeautifulSoup(html_text, "html.parser")
     # soup = BeautifulSoup(html_text, "lxml")
+    # contents = soup.select_one("div.se-main-container")
 
-    if soup.find("div", attrs={"class": "se-main-container"}):
-        text = soup.find("div", attrs={"class": "se-main-container"}).get_text()
-        
+    container = soup.find("div", attrs={"class": "se-main-container"})
+    if container:
+        texts = container.find_all(['p'])
+        # text = soup.find("div", attrs={"class": "se-main-container"}).get_text()
+        result = ''
+
+        for text in texts:
+            result += text.get_text()
+            result += '\n'
+
         # text = text.replace("\n", "")  # 공백 제거
-        text = text.replace("\u200b", "\n")  # 제로 스페이스 제거
-        return text
+        # text = text.replace("\u200b", "\n")  # 제로 스페이스 제거
+        result = result.replace("\u200b", "\n")  # 제로 스페이스 제거
+        return result
     else:
         return ''

@@ -29,6 +29,19 @@ def read(platform, blog_id, category_id):
     return df
 
 
+def to_text(df, file_name):
+    # 파일에 쓰기
+    with open(file_name, 'wt', encoding='utf-8') as f:
+        for idx, row in df.iterrows():
+            # f.write('================================')
+            f.write("\n")
+            f.write(f"제목 : {row['title']}\n")
+            f.write(f"작성일 : {row['created_at'].date()}\n\n")
+            f.write(row['contents'])
+            f.write("\n\n\n\n")
+    return True
+
+
 def read_list_in_category(blog_platform, blog_id, category_id):
     platform = convert_platform_id(blog_platform)
     if platform == SupportPlatform.Naver:
