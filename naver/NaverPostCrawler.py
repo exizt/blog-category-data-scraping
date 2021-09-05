@@ -40,4 +40,14 @@ def read_post(blog_id, post_no):
         result = result.replace("\u200b", "\n")  # 제로 스페이스 제거
         return result
     else:
+        # print('div.se-main-container 가 없음')
+        legacy_container = soup.find('div', attrs={'class': 'se_paragraph'})
+
+        if legacy_container:
+            for br in legacy_container.find_all("br"):
+                br.replace_with("\n")
+            # legacy_container = legacy_container.replace('<br>', '\n')
+
+            return legacy_container.get_text()
+
         return ''
