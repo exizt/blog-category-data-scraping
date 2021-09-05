@@ -2,6 +2,7 @@
 블로그 데이터 스크래핑.
 """
 from naver import NaverBlogCrawler, NaverPostCrawler
+from tistory import TistoryBlogCrawler, TistoryPostCrawler
 from enum import Enum
 import time
 import random
@@ -18,13 +19,13 @@ class SupportPlatform(Enum):
         return self.name
 
 
-def read(platform, blog_id, category_id):
+def read(platform, blog_id, category_id, include_child=False):
     platform = convert_platform_id(platform)
     if not platform:
         # 지원되지 않는 플랫폼인 경우
         raise
 
-    df = read_list_in_category(platform, blog_id, category_id)
+    df = read_list_in_category(platform, blog_id, category_id, include_child)
     df.insert(3, 'contents', '')
 
     total_count = len(df)
@@ -61,10 +62,12 @@ def to_text(df, file_name, reverse=False):
     return True
 
 
-def read_list_in_category(blog_platform, blog_id, category_id):
+def read_list_in_category(blog_platform, blog_id, category_id, include_child=False):
     platform = convert_platform_id(blog_platform)
     if platform == SupportPlatform.Naver:
-        return NaverBlogCrawler.read_list_in_category(blog_id, category_id)
+        return NaverBlogCrawler.read_list_in_category(blog_id, category_id, include_child)
+    elif platform == SupportPlatform.Tistory:
+        return TistoryBlogCrawler.read_list_in_category(blog_id, category_id, include_child)
     else:
         return False
 
@@ -74,6 +77,8 @@ def read_post(blog_platform, blog_id, post_id):
     platform = convert_platform_id(blog_platform)
     if platform == SupportPlatform.Naver:
         return NaverPostCrawler.read_post(blog_id, post_id)
+    elif platform == SupportPlatform.Tistory:
+        return TistoryPostCrawler.read_post(blog_id, post_id)
     else:
         return False
 
