@@ -21,6 +21,7 @@
 import BlogCrawler
 
 platform = 'naver'
+# platform = 'tistory'
 blog_id = '블로그아이디'
 category_id = '카테고리번호'
 filename = '저장할 파일명.txt'
