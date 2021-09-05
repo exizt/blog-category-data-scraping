@@ -4,8 +4,6 @@
 
 기록해두고 싶은 카테고리에 해당하는 글을 스크래핑해서 저장하는 것을 목적으로 하고 있습니다. 
 
-주의) 코드는 아직 작업 중이고, 미완성입니다~
-
 
 # 설치된 패키지
 - requests : certifi, carset-normalizer, idna, urllib3
@@ -15,7 +13,22 @@
 - pandas : numpy, python-dateutil, pytz, six
   - dataframe으로 손쉽게 데이터 핸들링
 - pytest : atomicwrites, attrs, colorama, iniconfig, packaging, pluggy, py, toml
-  - 디버깅 하려고.
+  - TDD 디버깅 하려고 추가함.
+
+
+# 사용법
+```python
+import BlogCrawler
+
+platform = 'naver'
+blog_id = '블로그아이디'
+category_id = '카테고리번호'
+filename = '저장할 파일명.txt'
+
+df = BlogCrawler.read(platform, blog_id, category_id, False)
+
+BlogCrawler.to_text(df, filename, reverse=True)
+```
 
 
 # 개발 노트
