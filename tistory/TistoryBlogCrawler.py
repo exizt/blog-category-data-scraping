@@ -31,7 +31,7 @@ class LazyDecoder(json.JSONDecoder):
 
 def read_list_in_category(blog_id: str, category_id, include_child=False) -> DataFrame:
     """
-    목록을 조회하는 기능.
+    티스토리 블로그의 카테고리 글 목록을 가져오는 기능.
     :param blog_id: 블로그 아이디
     :param category_id: 카테고리번호
     :param include_child: 자식 카테고리 포함 여부 (기본값 False)

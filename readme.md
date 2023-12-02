@@ -64,14 +64,16 @@ txt로 저장하지 않고, 데이터베이스에 넣거나 다양한 활용을 
 <br><br><br>
 
 # 사용된 파이썬 패키지
-- requests : certifi, carset-normalizer, idna, urllib3
-  - 웹 통신
 - beautifulsoup4 : soupsieve
   - 응답된 html의 핸들링
 - pandas : numpy, python-dateutil, pytz, six
   - dataframe으로 손쉽게 데이터 핸들링
 - pytest : atomicwrites, attrs, colorama, iniconfig, packaging, pluggy, py, toml
   - TDD 디버깅 하려고 추가함.
+- tldextract : url 추출 관련.
+  - : idna, requests, requests-file, filelock
+  - requests : 웹 통신 관련
+    -  certifi, charset-normalizer, idna, urllib3
 
 <br><br><br>
 
