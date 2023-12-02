@@ -1,22 +1,44 @@
 # 블로그 카테고리 글 수집기
 
-네이버, 티스토리 블로그의 특정한 블로그의 한 카테고리의 글을 수집할 수 있습니다. 
-
-txt파일에 수집한 내용을 기록합니다. 게시글 등을 txt로 백업하거나, 소설 등을 백업하는 데에 적합합니다.
+개요
+* 네이버 블로그, 티스토리 블로그에서 한 카테고리의 글을 수집하는 기능입니다. 
+* 한 카테고리의 글을 하나의 txt로 백업하는 등의 용도로 사용합니다.
+* git
+  * https://github.com/exizt/blog-category-data-scraping.git
 
 <br><br><br>
 
-# 1. 라이선스
+## 라이선스
 `MIT License`로 자유롭게 사용하실 수 있습니다.
 
 <br><br><br>
 
+# 셋팅
+```shell
+git clone git@github.com:exizt/blog-category-data-scraping.git blogscrap
+```
+
 # 2. 사용법
+네이버 블로그 스크랩
 ```python
 import BlogCrawler
 
 platform = 'naver'
 # platform = 'tistory'
+blog_id = '블로그아이디'
+category_id = '카테고리번호'
+filename = '저장할 파일명.txt'
+
+df = BlogCrawler.read(platform, blog_id, category_id, False)
+
+BlogCrawler.to_text(df, filename, reverse=True)
+```
+
+티스토리 블로그 스크랩
+```python
+import BlogCrawler
+
+platform = 'tistory'
 blog_id = '블로그아이디'
 category_id = '카테고리번호'
 filename = '저장할 파일명.txt'

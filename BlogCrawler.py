@@ -20,11 +20,20 @@ class SupportPlatform(Enum):
 
 
 def read(platform, blog_id, category_id, include_child=False):
+    """
+    블로그의 카테고리 글을 읽어들이는 기능.
+    :param platform:
+    :param blog_id:
+    :param category_id:
+    :param include_child:
+    :return:
+    """
     platform = convert_platform_id(platform)
     if not platform:
         # 지원되지 않는 플랫폼인 경우
         raise
 
+    # 카테고리의 글 목록 가져오기
     df = read_list_in_category(platform, blog_id, category_id, include_child)
     df.insert(3, 'contents', '')
 
@@ -34,6 +43,7 @@ def read(platform, blog_id, category_id, include_child=False):
         count = df.index.get_loc(idx) + 1
         # count = int(idx)+1
         print(f"read_post ({platform}, {blog_id}, {post_id})  {count}/{total_count}")
+        # 해당 글의 포스트의 컨텐츠를 가져오기
         row['contents'] = read_post(platform, blog_id, post_id)
 
         # 혹시 모르니까 sleep 추가
@@ -47,6 +57,13 @@ def get_sleep_time_random():
 
 
 def to_text(df, file_name, reverse=False):
+    """
+    dataFrame 으로 저장한 값을 txt 파일로 변환하는 함수.
+    :param df:
+    :param file_name:
+    :param reverse:
+    :return: bool
+    """
     if reverse:
         df = df[::-1]
 
