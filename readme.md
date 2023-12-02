@@ -14,11 +14,35 @@
 <br><br><br>
 
 # 셋팅
+필요 조건
+- 파이썬이 설치되어져 있어야 함.
+
+
 ```shell
+# git clone
 git clone git@github.com:exizt/blog-category-data-scraping.git blogscrap
+
+cd blogscrap
+
+# venv
+python -m venv venv
+
+# pip
+pip install -r requirements.txt
 ```
 
 # 2. 사용법
+## 명령어로 실행할 때
+```shell
+# 네이버
+python tt.py --url "https://blog.naver.com/blog_id" --category category_id
+
+# 티스토리
+python tt.py --url "https://blog_id.tistory.com/" --category category_id
+```
+
+
+## 소스 코드로 이용할 때
 네이버 블로그 스크랩
 ```python
 import BlogCrawler
