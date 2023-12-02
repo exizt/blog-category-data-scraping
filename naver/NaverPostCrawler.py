@@ -25,7 +25,8 @@ def read_post(blog_id, post_no):
     # soup = BeautifulSoup(html_text, "lxml")
     # contents = soup.select_one("div.se-main-container")
 
-    container = soup.find("div", attrs={"class": "se-main-container"})
+    # container = soup.find("div", attrs={"class": "se-main-container"})
+    container = soup.find("div", attrs={"id": "viewTypeSelector"})
     if container:
         texts = container.find_all(['p'])
         # text = soup.find("div", attrs={"class": "se-main-container"}).get_text()

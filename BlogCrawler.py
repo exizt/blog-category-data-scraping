@@ -43,8 +43,10 @@ def read(platform, blog_id, category_id, include_child=False):
         count = df.index.get_loc(idx) + 1
         # count = int(idx)+1
         print(f"read_post ({platform}, {blog_id}, {post_id})  {count}/{total_count}")
+
         # 해당 글의 포스트의 컨텐츠를 가져오기
-        row['contents'] = read_post(platform, blog_id, post_id)
+        # row['contents'] = read_post(platform, blog_id, post_id) # deprecated 된 듯함.
+        df.loc[idx, 'contents'] = read_post(platform, blog_id, post_id)
 
         # 혹시 모르니까 sleep 추가
         time.sleep(get_sleep_time_random())
