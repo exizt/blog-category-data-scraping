@@ -10,7 +10,6 @@ from dateutil.parser import parse as date_parse
 import datetime
 from pandas import DataFrame
 
-total_count = 0
 USER_AGENT = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 '
               'Safari/537.36')
 
@@ -104,7 +103,7 @@ def collect_per_page(blog_id: str, category_id, current_page=1, count_per_page=1
         # row['published'] = date_parse(row["published"])
         # published : "5분 전", "2017. 12. 19."
         published = None
-        if '분 전' in row['published']:
+        if '분 전' in row['published'] or '시간 전' in row['published']:
             published = datetime.datetime.today()
         else:
             published = date_parse(row["published"])
