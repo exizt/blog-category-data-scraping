@@ -41,9 +41,9 @@ def read_list_in_category(blog_id: str, category_id, include_child=False) -> Dat
     df = read_list_in_category_per_page(blog_id, category_id,
                                         current_page=1, count_per_page=per_page, include_child_category=include_child)
 
-    page_total_count = count_page(per_page)
-    if page_total_count >= 2:
-        for current_page in range(2, page_total_count+1):
+    page_count = count_page(per_page)
+    if page_count >= 2:
+        for current_page in range(2, page_count+1):
             current_df = read_list_in_category_per_page(blog_id, category_id,
                                                         current_page=current_page,
                                                         count_per_page=per_page, include_child_category=include_child)
@@ -61,6 +61,28 @@ def count_page(per_page=5):
     else:
         rv = total_count // per_page
     return rv
+
+
+def read_list_in_category_per_page_request(blog_id: str, category_id, page=1, per_page=10):
+    # 데이터 조회
+    # url = f"https://{blog_id}.tistory.com/m/data/posts.json"
+    url = f"https://{blog_id}.tistory.com/m/entries.json"
+
+    # noinspection PyDictCreation
+    params = {
+        'page': page,
+        'categoryId': category_id,
+        'size': per_page,
+        'useServerOffset': "true"
+    }
+
+    # 호출을 위장하기 위함.. 혹시 모르니까.
+    headers = {
+        'referer': f'https://{blog_id}.tistory.com/m/',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'
+    }
+    # request http
+    return requests.get(url, params=params, headers=headers)
 
 
 def read_list_in_category_per_page(blog_id: str, category_id, current_page=1, count_per_page=10, include_child_category=False) -> DataFrame:
@@ -85,6 +107,7 @@ def read_list_in_category_per_page(blog_id: str, category_id, current_page=1, co
         'referer': f'https://{blog_id}.tistory.com/m/',
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'
     }
+
     # request http
     response = requests.get(url, params=params, headers=headers)
 
