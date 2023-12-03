@@ -2,8 +2,8 @@ from app.tistory import TistoryBlogCrawler, TistoryPostCrawler
 
 
 def test_read_list_in_category():
-    blog_id = 'e2xist'
-    category_no = '854047'
+    blog_id = 'e2xist-test'
+    category_no = '1072932'
 
     # 크롤링
     df = TistoryBlogCrawler.collect(blog_id, category_no)
@@ -13,15 +13,15 @@ def test_read_list_in_category():
     #     print('success')
     # else:
     #     print('failed')
-    assert len(df) == 2
+    assert len(df) == 1
 
 
 def test_read_post():
-    blog_id = 'e2xist'
-    post_id = '769'
+    blog_id = 'e2xist-test'
+    post_id = '1'
 
     actual = TistoryPostCrawler.read_post(blog_id, post_id)
     # print(actual)
     # noinspection SpellCheckingInspection
-    expected = "테스트 test\n2021. 8. 18. 12:43\n\t\n테스트 본문\n\n\n가나다라\n가나다라\n"
+    expected = "\n테스트\n"
     assert actual == expected

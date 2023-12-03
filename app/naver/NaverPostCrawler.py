@@ -4,14 +4,17 @@
 import requests
 from bs4 import BeautifulSoup
 
+USER_AGENT = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 '
+              'Safari/537.36')
 
-def read_post(blog_id, post_no):
-    url = f"https://m.blog.naver.com/{blog_id}/{post_no}"
+
+def read_post(blog_id, post_id):
+    url = f"https://m.blog.naver.com/{blog_id}/{post_id}"
 
     # 호출을 위장하기 위함.. 혹시 모르니까.
     headers = {
         'referer': f'https://m.blog.naver.com/{blog_id}',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'
+        'user-agent': USER_AGENT
     }
 
     # request http

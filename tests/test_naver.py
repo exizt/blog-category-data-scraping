@@ -7,7 +7,7 @@ def test_read_list_in_category():
     category_no = '6'
 
     # 크롤링
-    df = NaverCategoryCrawler.read_list_in_category(blog_id, category_no)
+    df = NaverCategoryCrawler.collect(blog_id, category_no)
 
     # print(df)
     # if len(df) > 0:
