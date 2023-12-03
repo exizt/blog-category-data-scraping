@@ -2,7 +2,7 @@
 블로그 데이터 스크래핑.
 """
 from app.naver import NaverPostCrawler
-from app.naver import NaverPostListCrawler
+from app.naver import NaverCategoryCrawler
 from app.tistory import TistoryBlogCrawler, TistoryPostCrawler
 from enum import Enum
 import time
@@ -85,7 +85,7 @@ def to_text(df, file_name, reverse=False):
 def read_list_in_category(blog_platform, blog_id, category_id, include_child=False):
     platform = convert_platform_id(blog_platform)
     if platform == SupportPlatform.Naver:
-        return NaverBlogCrawler.read_list_in_category(blog_id, category_id, include_child)
+        return NaverCategoryCrawler.read_list_in_category(blog_id, category_id, include_child)
     elif platform == SupportPlatform.Tistory:
         return TistoryBlogCrawler.collect(blog_id, category_id, include_child)
     else:
