@@ -1,4 +1,4 @@
-from app.naver import NaverBlogCrawler
+from app.naver import NaverCategoryCrawler
 from app.naver import NaverPostCrawler
 
 
@@ -7,7 +7,7 @@ def test_read_list_in_category():
     category_no = '6'
 
     # 크롤링
-    df = NaverBlogCrawler.read_list_in_category(blog_id, category_no)
+    df = NaverCategoryCrawler.read_list_in_category(blog_id, category_no)
 
     # print(df)
     # if len(df) > 0:

@@ -41,9 +41,9 @@ def read(platform, blog_id, category_id, include_child=False):
     total_count = len(df)
     for idx, row in df.iterrows():
         post_id = row['post_id']
-        count = df.index.get_loc(idx) + 1
+        num = df.index.get_loc(idx) + 1
         # count = int(idx)+1
-        print(f"read_post ({platform}, {blog_id}, {post_id})  {count}/{total_count}")
+        print(f"read_post ({platform}, {blog_id}, {post_id})  {num}/{total_count}")
 
         # 해당 글의 포스트의 컨텐츠를 가져오기
         # row['contents'] = read_post(platform, blog_id, post_id) # deprecated 된 듯함.
