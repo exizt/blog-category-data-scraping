@@ -102,7 +102,13 @@ def collect_per_page(blog_id: str, category_id, current_page=1, count_per_page=1
     for idx, row in df.iterrows():
         # row['title'] = unquote_plus(row['title'])
         # row['published'] = date_parse(row["published"])
-        df.loc[idx, 'published'] = date_parse(row["published"])
+        # published : "5분 전", "2017. 12. 19."
+        published = None
+        if '분 전' in row['published']:
+            published = datetime.datetime.today()
+        else:
+            published = date_parse(row["published"])
+        df.loc[idx, 'published'] = published
 
     df.insert(0, 'blog_id', blog_id)
     df.rename(
