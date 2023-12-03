@@ -87,7 +87,7 @@ def read_list_in_category(blog_platform, blog_id, category_id, include_child=Fal
     if platform == SupportPlatform.Naver:
         return NaverBlogCrawler.read_list_in_category(blog_id, category_id, include_child)
     elif platform == SupportPlatform.Tistory:
-        return TistoryBlogCrawler.read_list_in_category(blog_id, category_id, include_child)
+        return TistoryBlogCrawler.collect(blog_id, category_id, include_child)
     else:
         return False
 

@@ -3,22 +3,22 @@ from app.tistory import TistoryBlogCrawler, TistoryPostCrawler
 
 def test_read_list_in_category():
     blog_id = 'e2xist'
-    category_no = '6'
+    category_no = '854047'
 
     # 크롤링
-    df = TistoryBlogCrawler.read_list_in_category(blog_id, category_no)
+    df = TistoryBlogCrawler.collect(blog_id, category_no)
 
     # print(df)
     # if len(df) > 0:
     #     print('success')
     # else:
     #     print('failed')
-    assert len(df) == 1
+    assert len(df) == 2
 
 
 def test_read_post():
     blog_id = 'e2xist'
-    post_id = '222474672614'
+    post_id = '769'
 
     actual = TistoryPostCrawler.read_post(blog_id, post_id)
     # print(actual)
