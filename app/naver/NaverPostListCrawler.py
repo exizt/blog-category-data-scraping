@@ -41,9 +41,9 @@ def read_list_in_category(blog_id: str, category_no, include_child=False) -> Dat
     df = read_list_in_category_per_page(blog_id, category_no,
                                         current_page=1, count_per_page=per_page, include_child_category=include_child)
 
-    page_total_count = count_page(per_page)
-    if page_total_count >= 2:
-        for current_page in range(2, page_total_count+1):
+    page_count = count_page(per_page)
+    if page_count >= 2:
+        for current_page in range(2, page_count+1):
             current_df = read_list_in_category_per_page(blog_id, category_no,
                                                         current_page=current_page,
                                                         count_per_page=per_page, include_child_category=include_child)
