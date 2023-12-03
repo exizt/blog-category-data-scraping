@@ -1,4 +1,4 @@
-from app.tistory import TistoryBlogCrawler, TistoryPostCrawler
+from app.tistory import TistoryCategoryCrawler, TistoryPostCrawler
 
 
 def test_read_list_in_category():
@@ -6,7 +6,7 @@ def test_read_list_in_category():
     category_no = '1072932'
 
     # 크롤링
-    df = TistoryBlogCrawler.collect(blog_id, category_no)
+    df = TistoryCategoryCrawler.collect(blog_id, category_no)
 
     # print(df)
     # if len(df) > 0:

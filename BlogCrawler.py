@@ -3,7 +3,7 @@
 """
 from app.naver import NaverPostCrawler
 from app.naver import NaverCategoryCrawler
-from app.tistory import TistoryBlogCrawler, TistoryPostCrawler
+from app.tistory import TistoryCategoryCrawler, TistoryPostCrawler
 from enum import Enum
 import time
 import random
@@ -72,6 +72,8 @@ def to_text(df, file_name, reverse=False):
 
     # 파일에 쓰기
     with open(file_name, 'wt', encoding='utf-8') as f:
+        f.write("\n")
+        f.write("\n")
         for idx, row in df.iterrows():
             # f.write('================================')
             f.write("\n")
@@ -87,7 +89,7 @@ def read_list_in_category(blog_platform, blog_id, category_id, include_child=Fal
     if platform == SupportPlatform.Naver:
         return NaverCategoryCrawler.collect(blog_id, category_id, include_child)
     elif platform == SupportPlatform.Tistory:
-        return TistoryBlogCrawler.collect(blog_id, category_id, include_child)
+        return TistoryCategoryCrawler.collect(blog_id, category_id, include_child)
     else:
         return False
 

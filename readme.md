@@ -35,10 +35,10 @@ pip install -r requirements.txt
 ## 명령어로 실행할 때
 ```shell
 # 네이버
-python tt.py --url "https://blog.naver.com/blog_id" --category category_id
+python cli.py --url "https://blog.naver.com/blog_id" --category category_id
 
 # 티스토리
-python tt.py --url "https://blog_id.tistory.com/" --category category_id
+python cli.py --url "https://blog_id.tistory.com/" --category category_id
 ```
 
 

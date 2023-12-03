@@ -8,7 +8,7 @@ import pandas as pd
 from pandas import DataFrame
 import time
 from urllib.parse import unquote_plus
-from app.utils import LazyJSONDecoder
+from app.utils.LazyJSONDecoder import LazyJSONDecoder
 
 
 total_count = 0

@@ -2,7 +2,7 @@ import re
 import json
 
 
-class LazyDecoder(json.JSONDecoder):
+class LazyJSONDecoder(json.JSONDecoder):
     """
     https://stackoverflow.com/questions/65910282/jsondecodeerror-invalid-escape-when-parsing-from-python
     JSONDecodeError; Invalid /escape 에 대한 조치
