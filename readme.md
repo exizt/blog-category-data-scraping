@@ -25,7 +25,7 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-# 2. 사용법
+# 사용법
 ## 명령어로 실행할 때
 ```shell
 # 네이버
@@ -68,7 +68,7 @@ BlogCrawler.to_text(df, filename, reverse=True)
 
 <br><br><br>
 
-# 3. 코드에 대한 간략 설명
+# 코드에 대한 간략 설명
 카테고리에 해당하는 글 목록을 우선적으로 수집합니다. 글 목록을 토대로 게시글의 본문을 하나씩 수집합니다.
 차단을 방지하기 위해 몇 초간의 텀을 주기로 하나씩 수집합니다. 글이 많으면 시간이 좀 걸릴 수 있습니다. 
 
