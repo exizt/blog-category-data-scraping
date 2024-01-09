@@ -3,8 +3,7 @@
 개요
 * 네이버 블로그, 티스토리 블로그에서 한 카테고리의 글을 수집하는 기능입니다. 
 * 한 카테고리의 글을 하나의 txt로 백업하는 등의 용도로 사용합니다.
-* git
-  * https://github.com/exizt/blog-category-data-scraping.git
+* Link: https://github.com/exizt/blog-category-data-scraping.git
 
 <br><br><br>
 
